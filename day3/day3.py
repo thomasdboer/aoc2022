@@ -5,10 +5,12 @@ f = open(filename, "r")
 input = f.read().splitlines()
 f.close()
 
+
 def matchcompartments(comp1, comp2):
     for char in comp1:
         if char in comp2:
             return char
+
 
 duplicates = []
 for rucksack in input:
@@ -17,13 +19,16 @@ for rucksack in input:
     compartment2 = rucksack[slice:]
     duplicates.append(matchcompartments(compartment1, compartment2))
 
-valueMap = {char:val for (val, char) in enumerate(string.ascii_letters, start=1)}
+valueMap = {char: val for (val, char) in enumerate(
+    string.ascii_letters, start=1)}
+
 
 def calculate_priority(characters):
     sum_priority = 0
     for char in characters:
         sum_priority += valueMap[char]
     return sum_priority
+
 
 # Part A solution
 print("Solution Part A:", calculate_priority(duplicates))
