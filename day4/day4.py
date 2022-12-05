@@ -4,6 +4,7 @@ f = open(filename, "r")
 input = f.read().splitlines()
 f.close()
 
+# Parse input
 assignments = []
 for pair in input:
     section_range = []
@@ -13,12 +14,11 @@ for pair in input:
         section_range.append((int(x), int(y)))
     assignments.append(section_range)
 
-
+# Helper function
 def range_encapsulates(xmin, xmax, ymin, ymax):
-    if (xmin <= ymin and xmax >= ymax) or (ymin <= xmin and ymax >= xmax):
-        return True
-    return False
+    return (xmin <= ymin and xmax >= ymax) or (ymin <= xmin and ymax >= xmax)
 
+# Solve
 counter_a = 0
 for assignment in assignments:
     min_a = assignment[0][0]
@@ -34,10 +34,12 @@ print("Solution Part A:", counter_a)
 # Part B
 # All pairs that have any overlap at all
 
+# Helper function
 def range_overlaps(xmin, xmax, ymin, ymax):
     x, y = set(range(xmin, xmax+1)), set(range(ymin, ymax+1))
     return bool(x.intersection(y))
 
+# Solve
 counter_b = 0
 for assignment in assignments:
     min_a = assignment[0][0]
