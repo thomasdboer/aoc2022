@@ -1,4 +1,7 @@
 import os
+from time import perf_counter
+
+t1_start = perf_counter()
 filename = os.path.join(os.path.dirname(__file__), "input.txt")
 f = open(filename, "r")
 input = f.read().splitlines()
@@ -33,3 +36,5 @@ def solve_b():
 
 # Part B solution
 print("Part B solution:", solve_b())
+t1_stop = perf_counter()
+print("Solution found in:", (t1_stop-t1_start).__round__(5), "s")
