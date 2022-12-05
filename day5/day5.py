@@ -63,7 +63,6 @@ def batch_move_blocks(n, start, stop):
 
 def solve_b():
     parse_instructions()
-    print(stacks, instructions_short)
     for n, start, stop in instructions_short:
         batch_move_blocks(n, start, stop)
     solution = ''
