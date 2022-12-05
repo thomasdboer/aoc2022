@@ -17,4 +17,4 @@
 .history
 .ionide
 # AoC inputs
-./input.txt
+*.txt
