@@ -1,5 +1,4 @@
 import os
-from copy import deepcopy
 filename = os.path.join(os.path.dirname(__file__), "input.txt")
 f = open(filename, "r")
 input = f.read().splitlines()
