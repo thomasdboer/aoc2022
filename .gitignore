@@ -18,3 +18,4 @@
 .ionide
 # AoC inputs
 *.txt
+.vscode/settings.json
