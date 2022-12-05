@@ -7,24 +7,37 @@ last_element = input.pop().rstrip()
 input.append(last_element)
 
 # Process strings into lists of ints
-elves = []
-for elf in input:
-    if elf.__contains__("\n"):
-        elves.append([int(x) for x in elf.split("\n")])
-    else:
-        elves.append([int(elf)])
+def get_calories_lists():
+    elves = []
+    for elf in input:
+        if elf.__contains__("\n"):
+            elves.append([int(x) for x in elf.split("\n")])
+        else:
+            elves.append([int(elf)])
+    return elves
 
 # Sum calories per elf
-elves_cal = []
-for calories_list in elves:
-    cal_total = 0
-    for item in calories_list:
-        cal_total += item
-    elves_cal.append(cal_total)
+def sum_calories(elves):
+    elves_cal = []
+    for calories_list in elves:
+        cal_total = 0
+        for item in calories_list:
+            cal_total += item
+        elves_cal.append(cal_total)
+    return elves_cal
 
-print("Part A solution: ", max(elves_cal))
+def solve_a():
+    cal_lists = get_calories_lists()
+    totals = sum_calories(cal_lists)
+    return max(totals)
+
+print("Part A solution: ", solve_a())
 
 # Part B
-top_elves = elves_cal
-top_elves.sort(reverse=True)
-print("Part B solution: ", sum(top_elves[0:3]))
+def solve_b():
+    cal_lists = get_calories_lists()
+    totals = sum_calories(cal_lists)
+    totals.sort(reverse=True)
+    return sum(totals[0:3])
+
+print("Part B solution: ", solve_b())

@@ -10,21 +10,20 @@ valueMap = {char: val for (val, char) in enumerate(
     string.ascii_letters, start=1)}
 
 
-# Parse input
-def parse_input():
-    global duplicates
+# Helper function using sets because why not
+def matchcompartments(comp1, comp2):
+    return ''.join(set(comp1).intersection(set(comp2)))
+
+# Find every letter present in both compartments
+def find_duplicates():
     duplicates = []
     for rucksack in input:
         slice = int(len(rucksack)/2)
         compartment1 = rucksack[:slice]
         compartment2 = rucksack[slice:]
         duplicates.append(matchcompartments(compartment1, compartment2))
+    return duplicates
 
-# Helper function
-def matchcompartments(comp1, comp2):
-    for char in comp1:
-        if char in comp2:
-            return char
             
 # Solve
 def calculate_priority(characters):
@@ -34,7 +33,7 @@ def calculate_priority(characters):
     return sum_priority
 
 def solve_a():
-    parse_input()
+    duplicates = find_duplicates()
     return calculate_priority(duplicates)
 
 
@@ -54,7 +53,6 @@ def find_badges():
     return badges
 
 def solve_b():
-    parse_input()
     badges = find_badges()
     return calculate_priority(badges)
 
