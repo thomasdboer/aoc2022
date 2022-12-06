@@ -7,8 +7,6 @@ input = f.read().splitlines()
 f.close()
 
 # Parse input
-
-
 def parse_inputs():
     global assignments
     assignments = []
@@ -21,8 +19,6 @@ def parse_inputs():
         assignments.append(section_range)
 
 # Helper function
-
-
 def get_min_max(assignment):
     min_a = assignment[0][0]
     max_a = assignment[0][1]
@@ -31,14 +27,10 @@ def get_min_max(assignment):
     return min_a, max_a, min_b, max_b
 
 # Helper function
-
-
 def range_encapsulates(xmin, xmax, ymin, ymax):
     return (xmin <= ymin and xmax >= ymax) or (ymin <= xmin and ymax >= xmax)
 
 # Solve
-
-
 def solve_a():
     parse_inputs()
     counter = 0
@@ -54,15 +46,11 @@ print("Solution Part A:", solve_a())
 
 # Part B
 # Helper function
-
-
 def range_overlaps(xmin, xmax, ymin, ymax):
     x, y = set(range(xmin, xmax+1)), set(range(ymin, ymax+1))
     return bool(x.intersection(y))
 
 # Solve
-
-
 def solve_b():
     parse_inputs()
     counter = 0
