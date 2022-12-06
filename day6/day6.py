@@ -3,19 +3,6 @@ from time import perf_counter
 t1_start = perf_counter()
 filename = os.path.join(os.path.dirname(__file__), "input.txt")
 
-
-markers = []
-
-
-def markindex(idx):
-    return (idx)
-
-
-def is_marker(buffer, size):
-    if len(set(buffer)) == size:
-        return True
-
-
 def read_input():
     global input
     f = open(filename, "r")
@@ -32,12 +19,11 @@ def solve_a():
         buffer.insert(0, i)
         if len(buffer) > 4:
             buffer.pop()
-            if is_marker(buffer, 4):
+            if len(set(buffer)) == 4:
                 return idx+1
 
 
 print("Part A solution: ", solve_a())
-t1_stop = perf_counter()
 
 
 def solve_b():
@@ -46,10 +32,10 @@ def solve_b():
         buffer.insert(0, i)
         if len(buffer) > 14:
             buffer.pop()
-            if is_marker(buffer, 14):
+            if len(set(buffer)) == 14:
                 return idx+1
 
 
 print("Part B solution: ", solve_b())
-
-print("Solution reached in: ", t1_stop-t1_start)
+t1_stop = perf_counter()
+print("Solution reached in:", round(t1_stop-t1_start, 5), 's')
