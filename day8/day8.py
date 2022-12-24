@@ -70,10 +70,10 @@ def solve_a():
     grid = parse_input()
     visibility = find_visible_trees(grid)
     visible_row = [row.count(True) for row in visibility]
-    return ''.join("Part A solution: ", sum(visible_row))
+    return sum(visible_row)
 
 
-print(solve_a())
+print("Part A solution:", solve_a())
 
 
 def solve_b():
@@ -90,8 +90,8 @@ def solve_b():
             else: treescore = 0
             row_scenicscores.append(treescore)
         scoremap.append(row_scenicscores)
-    return ''.join("Part B solution: max([max(b) for b in [x for x in scoremap]]")
+    return max([max(b) for b in [x for x in scoremap]])
 
-
+print("Part B solution:", solve_b())
 t1_stop = perf_counter()
-print("Solution reached in: ", round((t1_stop - t1_start), 5), "s")
+print("Solution reached in:", round((t1_stop - t1_start), 5), "s")

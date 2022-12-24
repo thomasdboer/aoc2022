@@ -41,14 +41,16 @@ def step_tail(head, tail):
     elif head.x == tail.x and head.y == tail.y:
         # Head and tail are overlapping, no need to move
         return
+    # Head and tail are within one step of each other, move horizontally or vertically
     elif dist_x > 1 and dist_y == 0:
-        # Head and tail are within one step of each other, move horizontally or vertically
         tail.x += 1 if head.x > tail.x else -1
+    elif dist_y > 1 and dist_x == 0:
         tail.y += 1 if head.y > tail.y else -1
+    # If none of the above apply, move diagonally    
     else:
-        # Head and tail are more than one step apart, move diagonally
         tail.x += 1 if head.x > tail.x else -1
         tail.y += 1 if head.y > tail.y else -1
+    
     tail.visited.add((tail.x, tail.y))
 
 
@@ -58,15 +60,12 @@ def solve_a():
     instructions = parse_instructions()
     while len(instructions) > 0:
         (dir, num) = instructions.pop()
-        print(dir, num)
-        (print(head.x, head.y))
         for i in range(num):
             step_head(dir, head)
             step_tail(head, tail)
-        print(tail.visited)
     return len(tail.visited)
 
-print(solve_a())
+print("Part A solution:", solve_a())
 
 def solve_b():
     nodes = [Node(0,0) for i in range(10)]
@@ -79,4 +78,6 @@ def solve_b():
                 step_tail(nodes[idx-1], node)
     return len(nodes[-1].visited)
 
-print(solve_b())
+print("Part B solution:", solve_b())
+t1_stop = perf_counter()
+print("Solution reached in:", round((t1_stop - t1_start), 5), "s")
