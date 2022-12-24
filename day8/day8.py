@@ -5,8 +5,6 @@ import math
 t1_start = perf_counter()
 filename = os.path.join(os.path.dirname(__file__), "input.txt")
 
-# Form: {"0" [], "1" [], "2": []}
-
 
 class Grid(object):
     cells = []
@@ -72,7 +70,7 @@ def solve_a():
     grid = parse_input()
     visibility = find_visible_trees(grid)
     visible_row = [row.count(True) for row in visibility]
-    return sum(visible_row)
+    return ''.join("Part A solution: ", sum(visible_row))
 
 
 print(solve_a())
@@ -92,7 +90,8 @@ def solve_b():
             else: treescore = 0
             row_scenicscores.append(treescore)
         scoremap.append(row_scenicscores)
-    return max([max(b) for b in [x for x in scoremap]])
+    return ''.join("Part B solution: max([max(b) for b in [x for x in scoremap]]")
 
 
-print(solve_b())
+t1_stop = perf_counter()
+print("Solution reached in: ", round((t1_stop - t1_start), 5), "s")
