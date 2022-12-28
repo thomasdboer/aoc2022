@@ -19,22 +19,21 @@ def parse_input():
     input.reverse()
     return input
 
+
 # Literally only necessary to shut the linter up
-
-
 class Cache(object):
     def __init__(self, inst, val):
         self.inst = inst
         self.val = val
         self.time = 2 if inst == 'addx' else 1
 
-
 class CPU(object):
     reg = 1
     cycle = 0
     signal_strengths = []
     cached_inst = None
-
+    line = ''
+    screen = []
     def __init__(self, instructions):
         self.instructions = instructions
 
@@ -47,13 +46,20 @@ class CPU(object):
         # During cycle
         if self.cycle in range(20, 221, 40):
             self.signal_strengths.append(self.cycle * self.reg)
-        #
+        pixel = (self.cycle - 1) % 40
+        if pixel == 0: line = ''
+        if self.reg - 1 <= pixel <= self.reg + 1:
+            self.line += '#'
+        else:
+            self.line += '.'
+        if pixel == 39: 
+            self.screen.append(self.line)
+            self.line = ''
         if self.cached_inst.time == 1:
             self.reg += self.cached_inst.val
             del self.cached_inst
         else:
             self.cached_inst.time -= 1
-
 
 def solve_a():
     input = parse_input()
@@ -62,4 +68,16 @@ def solve_a():
         cpu.tick()
     return sum(cpu.signal_strengths)
 
+
 print('Part A solution:', solve_a())
+
+
+def solve_b():
+    input = parse_input()
+    cpu2 = CPU(input)
+    while cpu2.instructions or cpu2.cached_inst:
+        cpu2.tick()
+    for line in cpu2.screen[:6]: print(line)
+        
+print("Part B solution:")
+solve_b()
